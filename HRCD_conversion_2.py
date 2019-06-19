@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 ########### User Input ###################
-input_file_name = "C:/Users/miqba005/OneDrive - Florida International University/Shahadat/HRCD conversion/Main Model_2076_163.csv"
+input_file_name = "C:/Users/miqba005/OneDrive - Florida International University/Shahadat/HRCD conversion/Main Model_2076_163.ldp"
 output_file_location = "C:/Users/miqba005/OneDrive - Florida International University/Shahadat/HRCD conversion/"
 file_column_names = ["ActivePhase1","ActivePhase4","ActivePhase3","ActivePhase2","Yellow1","Yellow2","Yellow3","Yellow4","Walk1","Walk2","Walk3","Walk4",
               "VehicleExtension1","VehicleExtension2","VehicleExtension3","VehicleExtension4","SimulSecond","RedClearance1","RedClearance2","RedClearance3","RedClearance4",
@@ -16,7 +16,17 @@ file_column_names = ["ActivePhase1","ActivePhase4","ActivePhase3","ActivePhase2"
 ######### Main Analysis ###############
 
 ### Read the file and preprocess the data ######
-InputFile = pd.read_csv(input_file_name,header = None)
+file2 = open("C:/Users/miqba005/OneDrive - Florida International University/Shahadat/HRCD conversion/Main Model_2076_163.ldp", "r")
+temp_dataframe = []
+i=0
+for line in file2:
+    if i < 29:
+        i += 1
+    else:
+        words = line.split()
+        temp_dataframe.append(words)
+file2.close()
+InputFile = pd.DataFrame(temp_dataframe)
 InputFile.columns = file_column_names
 InputFile = InputFile[["ActivePhase1","ActivePhase2","Yellow1","Yellow2","Walk1","Walk2",
               "VehicleExtension1","VehicleExtension2","SimulSecond","RedClearance1","RedClearance2",
